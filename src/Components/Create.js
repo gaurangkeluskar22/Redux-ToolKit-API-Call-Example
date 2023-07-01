@@ -1,6 +1,11 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { createUser } from "../Features/userDetailSlice";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
   const [users, setUsers] = useState({});
 
   const getUsersData = (e) => {
@@ -8,8 +13,15 @@ const Create = () => {
     console.log(users);
   };
 
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    console.log(users);
+    dispatch(createUser(users));
+    navigate("/read");
+  }
+
   return (
-    <form className="w-50 m-5 mx-auto">
+    <form className="w-50 m-5 mx-auto" onSubmit={handleSubmit}>
       <div className="form-group my-1">
         <label for="exampleInputEmail1">Name</label>
         <input
