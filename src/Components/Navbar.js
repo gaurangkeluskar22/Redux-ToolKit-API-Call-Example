@@ -1,12 +1,12 @@
 import React from "react";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#">
+      <h4 className="navbar-brand" href="#">
         Redux Toolkit
-      </a>
+      </h4>
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <div className="container">

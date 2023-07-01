@@ -10,12 +10,10 @@ const Create = () => {
 
   const getUsersData = (e) => {
     setUsers({ ...users, [e.target.name]: e.target.value });
-    console.log(users);
   };
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    console.log(users);
     dispatch(createUser(users));
     navigate("/read");
   }
