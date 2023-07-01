@@ -9,4 +9,4 @@ export const userDetailSlice = createSlice({
     },
 });
 
-export default userDetail.reducer;
+export default userDetailSlice.reducer;
