@@ -28,7 +28,9 @@ export const createUser = createAsyncThunk(
 export const showUser = createAsyncThunk(
   "showUser",
   async (data, { rejectWithValue }) => {
-    const response = await fetch("https://64a00384ed3c41bdd7a6e9cd.mockapi.io/Crud");
+    const response = await fetch(
+      "https://64a00384ed3c41bdd7a6e9cd.mockapi.io/Crud"
+    );
     try {
       const result = await response.json();
       return result;

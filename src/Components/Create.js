@@ -4,19 +4,19 @@ import { createUser } from "../Features/userDetailSlice";
 import { useNavigate } from "react-router-dom";
 
 const Create = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [users, setUsers] = useState({});
 
   const getUsersData = (e) => {
     setUsers({ ...users, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createUser(users));
     navigate("/read");
-  }
+  };
 
   return (
     <form className="w-50 m-5 mx-auto" onSubmit={handleSubmit}>
