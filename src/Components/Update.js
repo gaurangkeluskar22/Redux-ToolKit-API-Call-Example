@@ -4,16 +4,23 @@ import { useParams } from "react-router-dom";
 import {  useSelector } from "react-redux";
 
 const Update = () => {
+
   const {id} = useParams();
+  
   const [updateData, setUpdateData] = useState();
   const { users, loading } = useSelector((state) => state.app);
+  console.log("users data:",users);
   
 
   useEffect(() => {
+    console.log("inside useeffect");
     if(id){
     const singleUser = users.filter((ele) => ele.id === id);
-    setUpdateData(singleUser[0]);
-    }
+    
+    console.log("single user:",singleUser[0]);
+    setUpdateData(singleUser);
+    console.log("updated data:",updateData);
+   }
   }, []);
 
   
@@ -27,7 +34,7 @@ const Update = () => {
           name="name"
           className="form-control"
           placeholder="Enter Name"
-          value={updateData.name}
+          //value={updateData.name}
           //onChange={}
         />
       </div>
@@ -38,7 +45,7 @@ const Update = () => {
           className="form-control"
           placeholder="Enter Email"
           name="email"
-          value={updateData.email}
+          //value={updateData.email}
           //onChange={}
         />
       </div>
@@ -50,7 +57,7 @@ const Update = () => {
           className="form-control"
           placeholder="Enter Age"
           // onChange={}
-          value={updateData.age}
+          //value={updateData.age}
         />
       </div>
       <div className="w-5">
