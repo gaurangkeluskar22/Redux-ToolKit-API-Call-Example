@@ -40,6 +40,24 @@ export const showUser = createAsyncThunk(
   }
 );
 
+//Delete action
+export const deleteUser = createAsyncThunk(
+    "deleteUser",
+    async (id, { rejectWithValue }) => {
+      const response = await fetch(
+        `https://64a00384ed3c41bdd7a6e9cd.mockapi.io/Crud/${id}`,{
+            method:"DELETE"
+        }
+      );
+      try {
+        const result = await response.json();
+        return result;
+      } catch (error) {
+        return rejectWithValue(error);
+      }
+    }
+  );
+
 export const userDetailSlice = createSlice({
   name: "userDetail",
   initialState: {
@@ -71,6 +89,21 @@ export const userDetailSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+
+    [deleteUser.pending]: (state) => {
+        state.loading = true;
+      },
+      [deleteUser.fulfilled]: (state, action) => {
+        state.loading = false;
+        const {id} = action.payload;
+        if(id){
+            state.users = state.users.filter((ele)=> ele.id !==id);
+        }
+      },
+      [deleteUser.rejected]: (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      },
   },
 });
 

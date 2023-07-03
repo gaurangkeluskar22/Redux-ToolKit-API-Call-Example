@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { showUser } from "../Features/userDetailSlice";
+import { deleteUser, showUser } from "../Features/userDetailSlice";
 
 const Read = () => {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const Read = () => {
                     <button className="card-text btn btn-primary">Edit</button>
                   </div>
                   <div className="col-lg-6">
-                    <button className="card-text btn btn-danger">Delete</button>
+                    <button className="card-text btn btn-danger" onClick={()=>dispatch(deleteUser(ele.id))}>Delete</button>
                   </div>
                 </div>
               </div>
