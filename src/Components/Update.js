@@ -1,32 +1,37 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import { useParams } from "react-router-dom";
-import {  useSelector } from "react-redux";
-
+import { useParams,useNavigate } from "react-router-dom";
+import {  useDispatch,useSelector } from "react-redux";
+import { updateUser } from "../Features/userDetailSlice";
 const Update = () => {
 
   const {id} = useParams();
-  
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [updateData, setUpdateData] = useState();
   const { users, loading } = useSelector((state) => state.app);
-  console.log("users data:",users);
   
 
   useEffect(() => {
-    console.log("inside useeffect");
     if(id){
     const singleUser = users.filter((ele) => ele.id === id);
-    
-    console.log("single user:",singleUser[0]);
-    setUpdateData(singleUser);
-    console.log("updated data:",updateData);
+    setUpdateData(singleUser[0]);
    }
   }, []);
 
+  const newData=(e)=>{
+    setUpdateData({...updateData,[e.target.name]:e.target.value});
+  }
+
+  const handleUpdate =(e) =>{
+    e.preventDefault();
+    dispatch(updateUser(updateData));
+    navigate('/read');
+  }
   
 
   return (
-    <form className="w-50 m-5 mx-auto">
+    <form className="w-50 m-5 mx-auto" onSubmit={handleUpdate}>
       <div className="form-group my-1">
         <label for="exampleInputEmail1">Name</label>
         <input
@@ -34,8 +39,9 @@ const Update = () => {
           name="name"
           className="form-control"
           placeholder="Enter Name"
-          //value={updateData.name}
-          //onChange={}
+          defaultValue={updateData && updateData.name}
+          onChange={newData}
+          
         />
       </div>
       <div className="form-group my-1">
@@ -45,8 +51,8 @@ const Update = () => {
           className="form-control"
           placeholder="Enter Email"
           name="email"
-          //value={updateData.email}
-          //onChange={}
+          defaultValue={updateData && updateData.email}
+          onChange={newData}
         />
       </div>
       <div className="form-group my-1">
@@ -56,8 +62,8 @@ const Update = () => {
           name="age"
           className="form-control"
           placeholder="Enter Age"
-          // onChange={}
-          //value={updateData.age}
+           onChange={newData}
+          defaultValue={updateData && updateData.age}
         />
       </div>
       <div className="w-5">
@@ -67,7 +73,8 @@ const Update = () => {
             name="gender"
             value="Male"
             type="radio"
-            //onChange={}
+            defaultChecked={updateData && updateData.gender=="Male"}
+            onChange={newData}
           />
           <label className="form-check-label">Male</label>
         </div>
@@ -77,7 +84,8 @@ const Update = () => {
             name="gender"
             value="Female"
             type="radio"
-            //onChange={}
+            defaultChecked={updateData && updateData.gender=="Female"}
+            onChange={newData}
           />
           <label className="form-check-label">Female</label>
         </div>
