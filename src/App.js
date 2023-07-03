@@ -3,6 +3,7 @@ import Create from "./Components/Create";
 import Navbar from "./Components/Navbar";
 import Read from './Components/Read';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Update from "./Components/Update";
 
 function App() {
   return (
@@ -10,8 +11,9 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Create />} />
-          <Route path="/read" element={<Read/>} />
+          <Route exect path="/" element={<Create />} />
+          <Route exect path="/read" element={<Read/>} />
+          <Route exect path="/edit/:id" element={<Update/>} />
         </Routes>
       </BrowserRouter>
     </div>

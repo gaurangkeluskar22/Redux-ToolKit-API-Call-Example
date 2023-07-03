@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, showUser } from "../Features/userDetailSlice";
+import { Link } from "react-router-dom";
 
 const Read = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const Read = () => {
                 </div>
                 <div className="row">
                   <div className="col-lg-6">
-                    <button className="card-text btn btn-primary">Edit</button>
+                    <Link to={`/edit/${ele.id}`} ><button className="card-text btn btn-primary">Edit</button></Link>
                   </div>
                   <div className="col-lg-6">
                     <button className="card-text btn btn-danger" onClick={()=>dispatch(deleteUser(ele.id))}>Delete</button>
